@@ -1,0 +1,25 @@
+<% if @genres.present? %>
+<h1>Genres</h1>
+<ul>
+  <% @genres.each do |genre| %>
+    <li>
+      <%= link_to genre.name, genre %>
+      <% if current_user_admin? %>
+        <%= link_to "Edit", edit_genre_path(genre), class: "button" %>
+        <%= link_to "Delete", genre_path(genre), class: "button",
+            method: :delete,
+              data: {
+                confirm: "Are you sure you want to delete #{genre.name}?"
+              } %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<% else %>
+<h1>No Genres Yet</h1>
+<% end %>
+<% if current_user_admin? %>
+<section class="admin">
+  <%= link_to "Add New Genre", new_genre_path, class: "button" %>
+</section>
+<% end %>

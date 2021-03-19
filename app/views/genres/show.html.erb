@@ -1,0 +1,7 @@
+<h1><%= @genre.name %> Movies</h1>
+<% if @movies.present? %>
+  <% @movies.each do |movie| %>
+    <%= link_to movie.title, movie %>
+    <%= link_to image_tag(movie.image_file_name), movie %>
+  <% end %>
+<% end %>
